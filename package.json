@@ -21,10 +21,10 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-app-rewired start",
     "build:qa": "dotenv -e .env.qa react-app-rewired build",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build": "rreact-app-rewired build",
+    "test": "rreact-app-rewired test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js --ext .jsx src/  --fix",
     "prettier": "prettier -c --write src"
@@ -45,7 +45,7 @@
     "customize-cra": "^1.0.0-alpha.0",
     "husky": "^4.2.5",
     "less": "^3.11.1",
-    "less-loader": "^6.1.0",
+    "less-loader": "^5.0.0",
     "prettier": "^2.0.5",
     "react-app-rewired": "^2.1.6"
   }
