@@ -7,6 +7,8 @@ import ScrollToTop from '@/components/scroll-to-top';
 
 import lazyLoad from '@/utils/lazy-load';
 
+import CommonLayout from '@/layout/common';
+
 const Home = lazyLoad(import('@/pages/home'));
 
 export default function Routers() {
@@ -14,7 +16,9 @@ export default function Routers() {
     <Router>
       <ScrollToTop />
       <Switch>
-        <Route path="/home" render={(props) => <Home {...props} />} />
+        <CommonLayout>
+          <Route path="/home" render={(props) => <Home {...props} />} />
+        </CommonLayout>
         <Redirect to="/home" />
       </Switch>
     </Router>
