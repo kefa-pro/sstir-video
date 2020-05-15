@@ -1,5 +1,9 @@
 import React from 'react';
+import { Button } from 'antd'
 
 export default function Home() {
-  return <div>home</div>;
+  return <div>home
+
+    <Button>antd</Button>
+  </div>;
 }

@@ -10,9 +10,9 @@ import logger from 'redux-logger';
 //   ...moduleReducer
 // });
 
-const rootReducer = (state = {token: ''}, action) => {
-  return state
-}
+const rootReducer = (state = { token: '' }, action) => {
+  return state;
+};
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
