@@ -43,8 +43,10 @@
   },
   "devDependencies": {
     "customize-cra": "^1.0.0-alpha.0",
+    "husky": "^4.2.5",
     "less": "^3.11.1",
     "less-loader": "^6.1.0",
+    "prettier": "^2.0.5",
     "react-app-rewired": "^2.1.6"
   }
 }
