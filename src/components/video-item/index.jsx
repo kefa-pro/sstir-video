@@ -6,7 +6,7 @@ export default function VideoItem(props) {
   return (
     <div className={css['video-item-wrapper']}>
       <div className={css['img-wrapper']}>
-        <img src={img} alt=""/>
+        <img src={img} alt="" />
       </div>
       <h5 className={css['category']}>{category}</h5>
       <h5 className={css['title']}>{title}</h5>

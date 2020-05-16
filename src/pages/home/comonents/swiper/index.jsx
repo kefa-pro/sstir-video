@@ -25,6 +25,7 @@ export default function Swiper() {
           }
         }}
         autoplay
+        wrapAround
       >
         <img
           className={css['img']}
