@@ -10,12 +10,12 @@ import './styles/index.less';
 import 'normalize.css/normalize.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App>
-        <Routers />
-      </App>
-    </Provider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <Provider store={store}>
+    <App>
+      <Routers />
+    </App>
+  </Provider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
