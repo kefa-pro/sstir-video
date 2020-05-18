@@ -28,7 +28,11 @@ export default function WithHeaderLayout(props) {
         <Route path="/content/video/:id" render={(props) => <VideoDetail {...props} />} />
 
         <Route path="/content/person-list" render={(props) => <PersonList {...props} />} />
-        <Route name="person-detail" path="/content/person/:id" render={(props) => <PersonDetail {...props} />} />
+        <Route
+          name="person-detail"
+          path="/content/person/:id"
+          render={(props) => <PersonDetail {...props} />}
+        />
 
         <Route path="/content/news/:id" render={(props) => <News {...props} />} />
       </div>

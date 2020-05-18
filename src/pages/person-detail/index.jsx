@@ -19,8 +19,8 @@ export default function PersonDetail() {
   };
 
   const onLikeClick = () => {
-    console.log('like...')
-  }
+    console.log('like...');
+  };
 
   return (
     <div className={css['person-detail-wrapper']}>
@@ -29,7 +29,7 @@ export default function PersonDetail() {
         <img src={personInfo.pic} alt="" />
       </div>
       <div className={css['like-wrapper']}>
-        <i className="iconfont icon-like" onClick={onLikeClick}/>
+        <i className="iconfont icon-like" onClick={onLikeClick} />
       </div>
       <div className={css['info']}>
         <div className={css['row']}>

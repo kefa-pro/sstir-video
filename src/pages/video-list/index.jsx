@@ -34,7 +34,8 @@ export default function VieoList() {
       img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
       category: '第1期',
       title: '高福：创新创业创造，我们一起来征服病毒'
-    },{
+    },
+    {
       id: 1,
       img: 'https://www.kepuchina.cn/zt/zb/wskxj20/01/202004/W020200416560373994581.jpg',
       category: '第1期',

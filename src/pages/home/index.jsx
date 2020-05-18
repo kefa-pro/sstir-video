@@ -15,9 +15,9 @@ export default function Home(props) {
   }, []);
 
   const handlePersonMoreClick = useCallback(() => {
-    props.history.push('/content/person-list')
+    props.history.push('/content/person-list');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   const videoList = [
     {
