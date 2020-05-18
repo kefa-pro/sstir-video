@@ -8,9 +8,12 @@ export default function Panel(props) {
     <div className={css['panel-wrapper']}>
       <div className={css['header']}>
         <div className={css['title']}>{title || '精彩内容'}</div>
-        <div className={css['more']} onClick={onMore}>
-          更多
-        </div>
+        {/* 不传更多点击事件时，则不显示更多 */}
+        {onMore ? (
+          <div className={css['more']} onClick={onMore}>
+            更多
+          </div>
+        ) : null}
       </div>
       <div className={css['content-wrapper']}>{props.children}</div>
     </div>
@@ -19,5 +22,5 @@ export default function Panel(props) {
 
 Panel.propTypes = {
   title: PropTypes.string.isRequired,
-  onMore: PropTypes.func.isRequired
+  onMore: PropTypes.func
 };

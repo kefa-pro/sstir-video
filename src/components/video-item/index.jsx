@@ -1,10 +1,17 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import css from './index.module.less';
 export default function VideoItem(props) {
-  const { img, category, title } = props;
+  const { id, img, category, title } = props;
+
+  const history = useHistory();
+
+  const onClick = () => {
+    history.push(`/video/${id}`);
+  };
 
   return (
-    <div className={css['video-item-wrapper']}>
+    <div className={css['video-item-wrapper']} onClick={onClick}>
       <div className={css['img-wrapper']}>
         <img src={img} alt="" />
       </div>

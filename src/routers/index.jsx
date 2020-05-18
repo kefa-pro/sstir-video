@@ -5,21 +5,17 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 // 使用自定义Hook实现
 import ScrollToTop from '@/components/scroll-to-top';
 
-import lazyLoad from '@/utils/lazy-load';
-
 import CommonLayout from '@/layout/common';
-
-const Home = lazyLoad(import('@/pages/home'));
+import WithHeaderLayout from '@/layout/with-header';
 
 export default function Routers() {
   return (
     <Router>
       <ScrollToTop />
       <Switch>
-        <CommonLayout>
-          <Route path="/home" render={(props) => <Home {...props} />} />
-        </CommonLayout>
-        <Redirect to="/home" />
+        <Route path="/home" render={(props) => <CommonLayout {...props} />} />
+        <Route path="/content" render={(props) => <WithHeaderLayout {...props} />} />
+        <Redirect from="/" to="/home" exact />
       </Switch>
     </Router>
   );
