@@ -33,7 +33,7 @@ export default function PersonDetail() {
       });
       // 生成最终id murmur
       const murmur = Fingerprint2.x64hash128(values.join(''), 31);
-      setFingerPrint(murmur)
+      setFingerPrint(murmur);
     });
   }, []);
 
