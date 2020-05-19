@@ -13,10 +13,7 @@ export default function Breadcrumb(props) {
 
   const location = useLocation();
 
-  const params = useParams();
-
   const { pathname } = location;
-  console.log(location, params);
 
   let originPath = [
     {
@@ -54,6 +51,21 @@ export default function Breadcrumb(props) {
       ]);
     }
 
+    if (pathname.startsWith('/content/admin/video')) {
+      return originPath.concat([
+        {
+          name: '后台管理'
+        },
+        {
+          name: '视频管理'
+        }
+      ]);
+    }
+
+    if (pathname === '/content/login') {
+      return [];
+    }
+
     return originPath;
   };
 
@@ -65,7 +77,6 @@ export default function Breadcrumb(props) {
     }
   };
 
-  console.log(pathList);
   return (
     <div className={css['breadcrumb-wrapper']}>
       <ul className={css['breadcrumb-container']}>

@@ -1,8 +1,13 @@
 import instance from './axios';
 import qs from 'qs';
 
-const handleResponse = (res, resolve, reject) => {
-  resolve(res.data);
+const handleResponse = ({ data: { code, data, msg, message } }, resolve, reject) => {
+  if (code === 200) {
+    resolve(data);
+  } else {
+    console.log(msg, message);
+    reject(msg || message);
+  }
 };
 
 export function AppPost(url, data) {

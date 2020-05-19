@@ -15,7 +15,7 @@ export default function VideoItem(props) {
       <div className={css['img-wrapper']}>
         <img src={img} alt="" />
       </div>
-      <h5 className={css['category']}>{category}</h5>
+      <h5 className={css['category']}>第{category}期</h5>
       <h5 className={css['title']}>{title}</h5>
     </div>
   );

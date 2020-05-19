@@ -1,0 +1,31 @@
+@import '~@/styles/variables.less';
+
+.video-admin-list {
+  width: @containerWidth;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column nowrap;
+
+  .add-wrapper {
+    text-align: right;
+  }
+
+  .list {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+
+    .video-item {
+      width: 300px;
+      margin-right: 20px;
+      margin-bottom: 30px;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+
+    .btn-wrapper {
+      text-align: center;
+    }
+  }
+}
