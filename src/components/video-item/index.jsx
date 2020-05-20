@@ -1,14 +1,10 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
 import css from './index.module.less';
 export default function VideoItem(props) {
   const { img, category, title, url } = props;
 
-  // const history = useHistory();
-
   const onClick = () => {
-    // history.push(`/video/${id}`);
-    window.open(url)
+    window.open(url);
   };
 
   return (

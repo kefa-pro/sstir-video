@@ -22,3 +22,26 @@ export function UpdateVideo(data) {
 export function DelVideo(contentId) {
   return AppPost('/deleteContent', { contentId });
 }
+
+// 获取嘉宾列表
+export function getPersonList() {
+  return AppGet('/getParticipantList', {
+    pageNum: 0,
+    pageSize: 999
+  });
+}
+
+// 新增嘉宾
+export function addPerson(data) {
+  return AppPost('/insertParticipant', data);
+}
+
+// 更新嘉宾信息
+export function updatePerson(data) {
+  return AppPost('/updateParticipant', data);
+}
+
+// 删除嘉宾信息
+export function deletePerson(participantId) {
+  return AppPost('/deleteParticipant', { participantId });
+}

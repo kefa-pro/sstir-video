@@ -51,13 +51,24 @@ export default function Breadcrumb(props) {
       ]);
     }
 
-    if (pathname.startsWith('/content/admin/video')) {
+    if (pathname === '/content/admin/video') {
       return originPath.concat([
         {
           name: '后台管理'
         },
         {
           name: '视频管理'
+        }
+      ]);
+    }
+
+    if (pathname === '/content/admin/person') {
+      return originPath.concat([
+        {
+          name: '后台管理'
+        },
+        {
+          name: '嘉宾管理'
         }
       ]);
     }
