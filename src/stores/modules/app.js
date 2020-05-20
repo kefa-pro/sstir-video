@@ -1,4 +1,4 @@
-import { fromJS } from 'immutable'
+import { fromJS } from 'immutable';
 
 export const actionTypes = {
   SHOW_LOADING: 'app/show_loading',
@@ -19,9 +19,9 @@ export const actionCreators = {
   }
 };
 
-export const getLoadingStatus = state => {
-  return state.getIn(['app', 'isLoading'])
-}
+export const getLoadingStatus = (state) => {
+  return state.getIn(['app', 'isLoading']);
+};
 
 const defaultState = {
   isLoading: false
@@ -30,9 +30,9 @@ const defaultState = {
 export default (state = fromJS(defaultState), action) => {
   switch (action.type) {
     case actionTypes.SHOW_LOADING:
-      return state.set('isLoading', true)
+      return state.set('isLoading', true);
     case actionTypes.HIDE_LOADING:
-      return state.set('isLoading', false)
+      return state.set('isLoading', false);
     default:
       return state;
   }

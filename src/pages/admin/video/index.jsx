@@ -55,8 +55,8 @@ function VideoAdmin(props) {
       setList(mapList);
       hideLoading();
     } catch (err) {
-      message.error(err.toString())
-      hideLoading()
+      message.error(err.toString());
+      hideLoading();
     }
   };
 
@@ -91,7 +91,7 @@ function VideoAdmin(props) {
       fetchList();
     } catch (err) {
       hideLoading();
-      message.error(err.toString())
+      message.error(err.toString());
       console.log(err);
     }
   };
@@ -117,8 +117,8 @@ function VideoAdmin(props) {
       await DelVideo(id);
       fetchList();
     } catch (err) {
-      message.error(err.toString())
-      hideLoading()
+      message.error(err.toString());
+      hideLoading();
     }
   };
 
