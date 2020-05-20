@@ -5,7 +5,6 @@ const handleResponse = ({ data: { code, data, msg, message } }, resolve, reject)
   if (code === 200) {
     resolve(data);
   } else {
-    console.log(msg, message);
     reject(msg || message);
   }
 };

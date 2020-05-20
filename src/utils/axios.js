@@ -1,6 +1,11 @@
 import axios from 'axios';
 import appConfig from '@/config';
 
+// import store from '@/stores';
+// import { actionCreators as appActionCreators } from '@/stores/modules/app';
+
+// let reqList = [];
+
 // create axios instance
 const instance = axios.create({
   baseURL: appConfig.baseUrl,
@@ -16,9 +21,17 @@ instance.interceptors.request.use(
     //   config.headers['authorization'] = userToken
     // }
     // config.withCredentials = true
+    // 当前请求
+    // const request = JSON.stringify(config);
+    // 如果当前已经在请求了，则不再处理
+    // if (!reqList.includes(request)) {
+    //   reqList.push(request);
+    // }
+    // store.dispatch(appActionCreators.showLoading());
     return config;
   },
   (error) => {
+    // store.dispatch(appActionCreators.hideLoading());
     return Promise.reject(error);
   }
 );
@@ -34,9 +47,18 @@ instance.interceptors.response.use(
     //     duration: 2000
     //   })
     // }
+
+    // reqList.splice(
+    //   reqList.findIndex((item) => item === JSON.stringify(response.config)),
+    //   1
+    // );
+    // if (reqList.length === 0) {
+    //   store.dispatch(appActionCreators.hideLoading());
+    // }
     return response;
   },
   (error) => {
+    // store.dispatch(appActionCreators.hideLoading());
     return Promise.reject(error);
   }
 );

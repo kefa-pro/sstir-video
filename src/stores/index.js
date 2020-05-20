@@ -2,17 +2,13 @@ import { combineReducers } from 'redux-immutable';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-// import moduleReducer from './modules';
+import moduleReducer from './modules';
 
 // import queryApiMiddleWare from './middlewares/query-api';
 
-// const rootReducer = combineReducers({
-//   ...moduleReducer
-// });
-
-const rootReducer = (state = { token: '' }, action) => {
-  return state;
-};
+const rootReducer = combineReducers({
+  ...moduleReducer
+});
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
