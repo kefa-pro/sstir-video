@@ -45,3 +45,13 @@ export function updatePerson(data) {
 export function deletePerson(participantId) {
   return AppPost('/deleteParticipant', { participantId });
 }
+
+// 获取嘉宾详情
+export function getPersonDetail(data) {
+  return AppGet('/getParticipantInfoById', data)
+}
+
+// 点赞或取消
+export function postLike(data) {
+  return AppPost('/getALike', data)
+}

@@ -23,10 +23,15 @@
     padding: 10px 10px 0 0;
     width: 565px;
     text-align: right;
-    font-size: 12px;
+    font-size: 16px;
 
     i {
       cursor: pointer;
+      font-size: 16px;
+
+      &.like {
+        color: red;
+      }
     }
   }
 
@@ -38,21 +43,6 @@
 
     display: flex;
     flex-flow: column nowrap;
-
-    .row {
-      display: flex;
-      flex-flow: row nowrap;
-      line-height: 22px;
-
-      .label {
-        flex: 0 0 65px;
-        padding-right: 10px;
-        text-align: right;
-      }
-
-      .content {
-        flex: 1 1 auto;
-      }
-    }
+    white-space: pre-wrap;
   }
 }

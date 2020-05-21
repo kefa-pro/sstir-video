@@ -1,0 +1,23 @@
+{
+  "id": "1826816",
+  "name": "sstir-video",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "10907379",
+      "name": "like",
+      "font_class": "like1",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "14418330",
+      "name": "like",
+      "font_class": "like2",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    }
+  ]
+}

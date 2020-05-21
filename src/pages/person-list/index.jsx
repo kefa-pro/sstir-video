@@ -1,102 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { message } from 'antd';
 
 import Panel from '@/components/panel';
 import PersonItem from '@/components/person-item';
+
+import { getPersonList } from '@/services';
+import { actionCreators as appActionCreators } from '@/stores/modules/app';
+
 import css from './index.module.less';
 
-export default function PersonList() {
-  const personList = [
-    {
-      id: 1,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/01/202004/W020200416560373994581.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 2,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 3,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 4,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 5,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 1,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/01/202004/W020200416560373994581.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 2,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 3,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 4,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 5,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 1,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/01/202004/W020200416560373994581.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 2,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 3,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 4,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 5,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
+function PersonList(props) {
+  const {
+    appActions: { showLoading, hideLoading }
+  } = props;
+
+  const [personList, setPersonList] = useState([]);
+
+  const fetchPersonList = async () => {
+    try {
+      showLoading();
+      const { list } = await getPersonList();
+      const mapList = list.map((item) => {
+        return {
+          id: item.participantId,
+          name: item.name,
+          img: item.imgUrl,
+          title: item.title,
+          introduction: item.introduction
+        };
+      });
+      setPersonList(mapList);
+      hideLoading();
+    } catch (error) {
+      message.error(error.toString());
+      hideLoading();
     }
-  ];
+  };
+
+  useEffect(() => {
+    fetchPersonList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className={css['person-list-wrapper']}>
       <Panel title="所有嘉宾">
@@ -107,3 +55,11 @@ export default function PersonList() {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    appActions: bindActionCreators(appActionCreators, dispatch)
+  };
+};
+
+export default connect(null, mapDispatchToProps)(PersonList);

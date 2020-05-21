@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import css from './index.module.less';
 
 export default function PersonItem(props) {
-  const { img, title, id } = props;
+  const { name, img, title, id } = props;
 
   const history = useHistory();
 
@@ -16,7 +16,9 @@ export default function PersonItem(props) {
       <div className={css['img-wrapper']}>
         <img src={img} alt="" />
       </div>
-      <h5 className={css['title']}>{title}</h5>
+      <h5 className={css['title']}>
+        {name}:&nbsp;&nbsp;{title}
+      </h5>
     </div>
   );
 }
