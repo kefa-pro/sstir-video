@@ -7,7 +7,6 @@ import { getPersonDetail, postLike } from '@/services';
 import css from './index.module.less';
 
 export default function PersonDetail(props) {
-
   const [fingerPrint, setFingerPrint] = useState('');
   const [personInfo, setPersonInfo] = useState({});
 
