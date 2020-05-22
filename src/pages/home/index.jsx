@@ -1,14 +1,53 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import HomeHeader from './comonents/header';
 import Swiper from './comonents/swiper';
+import { message } from 'antd';
 
 import Panel from '@/components/panel';
 import VideoItem from '@/components/video-item';
 import PersonItem from '@/components/person-item';
-
+import { getHome } from '@/services';
 import css from './index.module.less';
 
 export default function Home(props) {
+  const [videoList, setVideoList] = useState([]);
+  const [personList, setPersonList] = useState([]);
+  const [preVideoList, setPreVideoList] = useState([]);
+
+  useEffect(() => {
+    const getHomeAd = async () => {
+      try {
+        const { contents, participants, preContents } = await getHome();
+        setVideoList(
+          contents.map((item) => {
+            return {
+              id: item.contentId,
+              img: item.imgUrl,
+              category: item.issue,
+              title: item.title,
+              url: item.url
+            };
+          })
+        );
+        setPersonList(
+          participants.map((item) => {
+            return {
+              id: item.participantId,
+              name: item.name,
+              img: item.imgUrl,
+              title: item.title,
+              introduction: item.introduction
+            };
+          })
+        );
+        setPreVideoList(preContents);
+      } catch (err) {
+        message.error(err);
+      }
+    };
+    getHomeAd();
+  }, []);
+
   const handleVideoMoreClick = useCallback(() => {
     props.history.push('/content/video-list');
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -18,39 +57,6 @@ export default function Home(props) {
     props.history.push('/content/person-list');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const videoList = [
-    {
-      id: 1,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/01/202004/W020200416560373994581.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 2,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 3,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 4,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    },
-    {
-      id: 5,
-      img: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416548820914165.jpg',
-      category: '第1期',
-      title: '高福：创新创业创造，我们一起来征服病毒'
-    }
-  ];
 
   return (
     <div className={css['home-wrapper']}>
@@ -68,7 +74,7 @@ export default function Home(props) {
         </div>
         <div className={css['list-wrapper']}>
           <Panel title="嘉宾" onMore={handlePersonMoreClick}>
-            {videoList.map((person, index) => (
+            {personList.map((person, index) => (
               <PersonItem key={index} {...person} />
             ))}
           </Panel>

@@ -19,6 +19,7 @@ const PersonDetail = lazyLoad(import('@/pages/person-detail'));
 
 const News = lazyLoad(import('@/pages/news'));
 
+const AdminList = lazyLoad(import('@/pages/admin/list'));
 const VideoAdmin = lazyLoad(import('@/pages/admin/video'));
 const PersonAdmin = lazyLoad(import('@/pages/admin/person'));
 
@@ -44,6 +45,7 @@ export default function WithHeaderLayout(props) {
 
         <Route path="/content/news/:id" render={(props) => <News {...props} />} />
 
+        <PrivateRoute path="/content/admin/list" render={(props) => <AdminList {...props} />} />
         <PrivateRoute path="/content/admin/video" render={(props) => <VideoAdmin {...props} />} />
         <PrivateRoute path="/content/admin/person" render={(props) => <PersonAdmin {...props} />} />
       </div>

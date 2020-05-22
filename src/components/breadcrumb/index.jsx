@@ -54,7 +54,8 @@ export default function Breadcrumb(props) {
     if (pathname === '/content/admin/video') {
       return originPath.concat([
         {
-          name: '后台管理'
+          name: '后台管理',
+          path: '/content/admin/list'
         },
         {
           name: '视频管理'
@@ -65,12 +66,21 @@ export default function Breadcrumb(props) {
     if (pathname === '/content/admin/person') {
       return originPath.concat([
         {
-          name: '后台管理'
+          name: '后台管理',
+          path: '/content/admin/list'
         },
         {
           name: '嘉宾管理'
         }
       ]);
+    }
+
+    if (pathname === '/content/admin/list') {
+      return originPath.concat([
+        {
+          name: '后台管理'
+        }
+      ])
     }
 
     if (pathname === '/content/login') {

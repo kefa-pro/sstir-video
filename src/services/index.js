@@ -1,4 +1,9 @@
-import { AppGet, AppPost } from '@/utils/request';
+import { AppGet, AppPost, AppDelete } from '@/utils/request';
+
+// 获取首页内容
+export function getHome() {
+  return AppGet('/getActivityIndex')
+}
 
 // 获取所有视频列表
 export function getVideoList() {
@@ -20,7 +25,7 @@ export function UpdateVideo(data) {
 
 // 删除视频
 export function DelVideo(contentId) {
-  return AppPost('/deleteContent', { contentId });
+  return AppDelete('/deleteContent', { contentId });
 }
 
 // 获取嘉宾列表
@@ -43,15 +48,15 @@ export function updatePerson(data) {
 
 // 删除嘉宾信息
 export function deletePerson(participantId) {
-  return AppPost('/deleteParticipant', { participantId });
+  return AppDelete('/deleteParticipant', { participantId });
 }
 
 // 获取嘉宾详情
 export function getPersonDetail(data) {
-  return AppGet('/getParticipantInfoById', data)
+  return AppGet('/getParticipantInfoById', data);
 }
 
 // 点赞或取消
 export function postLike(data) {
-  return AppPost('/getALike', data)
+  return AppPost('/getALike', data);
 }

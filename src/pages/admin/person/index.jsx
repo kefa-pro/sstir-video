@@ -35,7 +35,7 @@ function PersonAdmin(props) {
   });
   const [showEdit, setShowEdit] = useState(false);
   const [editConfirmLoading, setEditConfirmLoading] = useState(false);
-  const [fileList, setFileList] = useState([]);
+  const [picList, setPicList] = useState([]);
 
   const [form] = Form.useForm();
 
@@ -70,6 +70,13 @@ function PersonAdmin(props) {
     form.resetFields();
   }, [currentPerson, form]);
 
+  // useEffect(() => {
+  //   if (picList[0] && picList[0].response && picList[0].response.code !== 200) {
+  //     message.error(picList[0].response.message);
+  //     setPicList([]);
+  //   }
+  // }, [picList]);
+
   const onAddClick = () => {
     setCurrentPerson({
       id: null,
@@ -77,6 +84,7 @@ function PersonAdmin(props) {
       title: '',
       introduction: ''
     });
+    setPicList([]);
     setShowEdit(true);
   };
 
@@ -88,6 +96,13 @@ function PersonAdmin(props) {
       title: person.title,
       introduction: person.introduction
     });
+    setPicList([
+      {
+        uid: -new Date(),
+        url: person.img,
+        thumbUrl: person.img
+      }
+    ]);
     setShowEdit(true);
   };
 
@@ -115,11 +130,16 @@ function PersonAdmin(props) {
 
   const onEditOKClick = async () => {
     try {
+      if (picList.length === 0) {
+        message.error('请上传封面');
+        return;
+      }
       setEditConfirmLoading(true);
+      const pic = picList[0].url || picList[0].response.data;
       const values = await form.validateFields();
       const postData = Object.assign(values, {
         participantId: currentPerson.participantId,
-        imgUrl: 'https://www.kepuchina.cn/zt/zb/wskxj20/01/202004/W020200416560373994581.jpg'
+        imgUrl: pic
       });
       console.log(postData);
       if (postData.participantId) {
@@ -143,9 +163,23 @@ function PersonAdmin(props) {
     setShowEdit(false);
   };
 
-  const onUploadPicPreview = () => {};
+  const onPicPreview = (file) => {
+    const pic = file.url || file.response.data;
+    window.open(pic);
+  };
 
-  const onUploadPicChange = () => {};
+  const onUploadPicChange = ({ file, fileList }) => {
+    if (file.status === 'done') {
+      if (file.response.code === 200) {
+        setPicList(fileList);
+      } else {
+        setPicList([]);
+        message.error(file.response.message);
+      }
+    } else {
+      setPicList(fileList);
+    }
+  };
 
   const uploadButton = (
     <div>
@@ -216,11 +250,11 @@ function PersonAdmin(props) {
             <Upload
               action={appConfig.uploadUrl}
               listType="picture-card"
-              fileList={fileList}
-              onPreview={onUploadPicPreview}
+              fileList={picList}
+              onPreview={onPicPreview}
               onChange={onUploadPicChange}
             >
-              {fileList.length >= 1 ? null : uploadButton}
+              {picList.length >= 1 ? null : uploadButton}
             </Upload>
           </Form.Item>
           <Form.Item

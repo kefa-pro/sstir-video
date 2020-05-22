@@ -41,3 +41,18 @@ export function AppGet(url, data) {
       });
   });
 }
+
+export function AppDelete(url, data) {
+  return new Promise((resolve, reject) => {
+    instance
+      .delete(url, {
+        data
+      })
+      .then((res) => {
+        handleResponse(res, resolve, reject);
+      })
+      .catch((err) => {
+        reject(err.toString());
+      });
+  });
+}

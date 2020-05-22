@@ -24,6 +24,8 @@ export default function Login(props) {
       message.success('登录成功');
       if (state && state.from) {
         props.history.push(state.from);
+      } else {
+        props.history.push('/content/admin/list')
       }
     } else {
       message.error('密码错误,请不要乱来~~');
