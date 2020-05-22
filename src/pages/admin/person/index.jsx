@@ -70,13 +70,6 @@ function PersonAdmin(props) {
     form.resetFields();
   }, [currentPerson, form]);
 
-  // useEffect(() => {
-  //   if (picList[0] && picList[0].response && picList[0].response.code !== 200) {
-  //     message.error(picList[0].response.message);
-  //     setPicList([]);
-  //   }
-  // }, [picList]);
-
   const onAddClick = () => {
     setCurrentPerson({
       id: null,
@@ -89,13 +82,6 @@ function PersonAdmin(props) {
   };
 
   const onEditClick = (person) => {
-    setCurrentPerson({
-      participantId: person.id,
-      name: person.name,
-      imgUrl: person.img,
-      title: person.title,
-      introduction: person.introduction
-    });
     setPicList([
       {
         uid: -new Date(),
@@ -103,6 +89,13 @@ function PersonAdmin(props) {
         thumbUrl: person.img
       }
     ]);
+    setCurrentPerson({
+      participantId: person.id,
+      name: person.name,
+      imgUrl: person.img,
+      title: person.title,
+      introduction: person.introduction
+    });
     setShowEdit(true);
   };
 

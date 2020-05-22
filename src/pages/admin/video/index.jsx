@@ -34,7 +34,7 @@ function VideoAdmin(props) {
   });
   const [showEdit, setShowEdit] = useState(false);
   const [editConfirmLoading, setEditConfirmLoading] = useState(false);
-  const [fileList, setFileList] = useState([]);
+  const [picList, setPicList] = useState([]);
 
   const [form] = Form.useForm();
 
@@ -72,12 +72,17 @@ function VideoAdmin(props) {
 
   // methods
   const onEditOKClick = async () => {
+    if (picList.length === 0) {
+      message.error('请上传封面');
+      return;
+    }
     try {
       setEditConfirmLoading(true);
+      const pic = picList[0].url || picList[0].response.data;
       const values = await form.validateFields();
       const postData = Object.assign(values, {
         contentId: currentVideo.contentId,
-        imgUrl: 'https://www.kepuchina.cn/zt/zb/wskxj20/01/202004/W020200416560373994581.jpg'
+        imgUrl: pic
       });
       if (postData.contentId) {
         showLoading();
@@ -101,6 +106,7 @@ function VideoAdmin(props) {
   };
 
   const onAddClick = () => {
+    setPicList([]);
     setCurrentVideo({
       id: null,
       img: '',
@@ -134,6 +140,13 @@ function VideoAdmin(props) {
   };
 
   const onEditClick = (video) => {
+    setPicList([
+      {
+        uid: -new Date(),
+        url: video.img,
+        thumbUrl: video.img
+      }
+    ]);
     setCurrentVideo({
       contentId: video.id,
       imgUrl: video.img,
@@ -144,9 +157,23 @@ function VideoAdmin(props) {
     setShowEdit(true);
   };
 
-  const onUploadPicPreview = () => {};
+  const onUploadPicPreview = (file) => {
+    const pic = file.url || file.response.data;
+    window.open(pic);
+  };
 
-  const onUploadPicChange = () => {};
+  const onUploadPicChange = ({ file, fileList }) => {
+    if (file.status === 'done') {
+      if (file.response.code === 200) {
+        setPicList(fileList);
+      } else {
+        setPicList([]);
+        message.error(file.response.message);
+      }
+    } else {
+      setPicList(fileList);
+    }
+  };
 
   const uploadButton = (
     <div>
@@ -229,11 +256,11 @@ function VideoAdmin(props) {
             <Upload
               action={appConfig.uploadUrl}
               listType="picture-card"
-              fileList={fileList}
+              fileList={picList}
               onPreview={onUploadPicPreview}
               onChange={onUploadPicChange}
             >
-              {fileList.length >= 1 ? null : uploadButton}
+              {picList.length >= 1 ? null : uploadButton}
             </Upload>
           </Form.Item>
         </Form>

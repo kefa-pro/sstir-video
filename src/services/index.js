@@ -2,7 +2,7 @@ import { AppGet, AppPost, AppDelete } from '@/utils/request';
 
 // 获取首页内容
 export function getHome() {
-  return AppGet('/getActivityIndex')
+  return AppGet('/getActivityIndex');
 }
 
 // 获取所有视频列表

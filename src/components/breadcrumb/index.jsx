@@ -80,7 +80,7 @@ export default function Breadcrumb(props) {
         {
           name: '后台管理'
         }
-      ])
+      ]);
     }
 
     if (pathname === '/content/login') {
