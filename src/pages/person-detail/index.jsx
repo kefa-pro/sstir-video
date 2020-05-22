@@ -1,28 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
 import Fingerprint2 from 'fingerprintjs2';
-import classnames from 'classnames';
 
 import { getPersonDetail, postLike } from '@/services';
 
 import css from './index.module.less';
-import person from '../admin/person';
 
 export default function PersonDetail(props) {
-  // const personInfo = {
-  //   name: '李英贤：仰望星空，探索航天医学的奥秘',
-  //   pic: 'https://www.kepuchina.cn/zt/zb/wskxj20/04/202004/W020200416547689529268.jpg',
-  //   org: '中国科学院上海巴斯德研究所',
-  //   age: 45,
-  //   sexy: '女',
-  //   domain: '生物信息',
-  //   dept: '病原大数据实验室',
-  //   position: '研究所',
-  //   study: `科研妈妈讲故事以女科技工作者结合各自专业领域选取一个科普视角，聚焦日常生活、
-  //   当下热点，给孩子介绍科学方法、科学常识，解释某种科学现象、科学原理，讲述知名
-  //   科学人物、感人科研瞬间等，以通俗易懂的语言，有趣生动的故事，清新有爱的表述，
-  //   传递科学理念、弘扬科学精神，为孩子埋下科学的种子。`
-  // };
 
   const [fingerPrint, setFingerPrint] = useState('');
   const [personInfo, setPersonInfo] = useState({});
